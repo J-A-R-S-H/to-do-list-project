@@ -22,6 +22,13 @@ class Project {
     }
   }
 
+  removeTodo(todo) {
+    const index = this.todos.indexOf(todo);
+    if (index > -1) {
+      this.todos.splice(index, 1);
+    }
+  }
+
   listTodos() {
     return this.todos;
   }
@@ -31,6 +38,7 @@ class Project {
 const project = new Project("Sample Project");
 const todo = new ToDoItem("test", "tset", "2023-12-31", "High", "Notes");
 
-console.log(project);
 project.addTodo(todo);
+project.removeTodo(todo);
+console.log(project);
 console.log(project.listTodos());
