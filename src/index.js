@@ -52,21 +52,27 @@ class Project {
   }
 }
 
-class ProjectManager {
-  constructor(name) {
-    this.name = name;
-    this.projects = [];
+function ProjectManager() {
+  let instance;
+  function init() {
+    const projects = [];
+    return {
+      addProject(project) {
+        if (project instanceof Project) {
+          projects.push(project);
+        }
+      },
+      listProjects() {
+        return projects;
+      },
+    };
   }
 
-  addProject(project) {
-    if (project instanceof Project) {
-      this.projects.push(project);
-    }
+  if (!instance) {
+    instance = init();
   }
 
-  listProjects() {
-    return this.projects;
-  }
+  return instance;
 }
 
 const project1 = new Project("Sample Project 1");
@@ -88,12 +94,11 @@ const updatedProperties1 = {
 project1.updateTodo(todo.id, updatedProperties1);
 console.log(project1.listTodos());
 
-const projectTest = new ProjectManager("Project Manager");
+const projectManager = ProjectManager();
 const project2 = new Project("Sample Project 2");
-projectTest.addProject(project1);
-projectTest.addProject(project2);
-
-console.log(projectTest, "test");
+projectManager.addProject(project1);
+projectManager.addProject(project2);
+console.log(projectManager.listProjects(), "test");
 
 // // What to do next
 // Complete CRUD Operations:
