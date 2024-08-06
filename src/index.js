@@ -65,6 +65,13 @@ function ProjectManager() {
       listProjects() {
         return projects;
       },
+
+      removeProject(project) {
+        const index = projects.indexOf(project);
+        if (index > -1) {
+          projects.splice(index, 1);
+        }
+      },
     };
   }
 
@@ -100,6 +107,9 @@ projectManager.addProject(project1);
 projectManager.addProject(project2);
 console.log(projectManager.listProjects(), "test");
 
+projectManager.removeProject(project1);
+
+console.log(projectManager.listProjects(), "after removal");
 // // What to do next
 // Complete CRUD Operations:
 
