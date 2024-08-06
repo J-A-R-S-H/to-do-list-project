@@ -1,4 +1,4 @@
-class ToDoItem {
+export class ToDoItem {
   constructor(
     title,
     description,
@@ -18,7 +18,7 @@ class ToDoItem {
   }
 }
 
-class Project {
+export class Project {
   constructor(name) {
     this.name = name;
     this.todos = [];
@@ -52,7 +52,7 @@ class Project {
   }
 }
 
-function ProjectManager() {
+export function ProjectManager() {
   let instance;
   function init() {
     const projects = [];
@@ -109,7 +109,6 @@ console.log(projectManager.listProjects(), "test");
 
 projectManager.removeProject(project1);
 
-console.log(projectManager.listProjects(), "after removal");
 // // What to do next
 // Complete CRUD Operations:
 
@@ -118,3 +117,11 @@ console.log(projectManager.listProjects(), "after removal");
 // Create Projects: Implement functionality to create new projects.
 // Delete Projects: Add functionality to delete projects.
 // List Projects: Ensure you can list all projects.
+
+const projectForm = document.querySelector("#project-form");
+const projectTitle = document.querySelector("#project-title");
+projectForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  projectManager.addProject(new Project(projectTitle.value));
+  console.log(projectManager.listProjects(), "added");
+});

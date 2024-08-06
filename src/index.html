@@ -6,9 +6,28 @@
     <title>Document</title>
   </head>
   <h1>A To-Do List</h1>
+  <p>All Tasks</p>
+  <p>Placeholder Project</p>
+  <p>Placeholder Project</p>
+  <p>Placeholder Project</p>
+  <p>Placeholder Project</p>
+
+  <form action="" id="project-form">
+    <legend>New List</legend>
+    <label for="project-title">Project Title</label>
+    <input
+      type="text"
+      name="project-title"
+      id="project-title"
+      placeholder="Add a new task"
+      required
+    />
+    <button type="submit" id="submit">Add Project</button>
+  </form>
+
   <form action="" id="todo-form">
     <input type="text" id="todo-input" placeholder="Add a new task" required />
-    <button type="submit">Add</button>
+    <button type="submit" id="submit">Add</button>
   </form>
 
   <script src="index.js"></script>
