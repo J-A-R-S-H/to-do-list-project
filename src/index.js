@@ -120,8 +120,29 @@ projectManager.removeProject(project1);
 
 const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
+const projectWrapper = document.querySelector("#project-wrapper");
+
 projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
   projectManager.addProject(new Project(projectTitle.value));
   console.log(projectManager.listProjects(), "added");
+
+  renderProjectsList();
 });
+
+function renderProjectsList() {
+  projectWrapper.innerHTML = "";
+  for (let i = 0; i < projectManager.listProjects().length; i++) {
+    const projectData = projectManager.listProjects()[i];
+    console.log(projectData, "project data");
+
+    let projectEl = document.createElement("div");
+    projectEl.innerHTML = `
+<p>${projectData.name}<p>
+`;
+
+    projectWrapper.appendChild(projectEl);
+  }
+}
+
+renderProjectsList();
