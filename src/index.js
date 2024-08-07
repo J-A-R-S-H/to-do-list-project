@@ -67,9 +67,8 @@ export function ProjectManager() {
       },
 
       removeProject(project) {
-        const index = projects.indexOf(project);
-        if (index > -1) {
-          projects.splice(index, 1);
+        if (project > -1) {
+          projects.splice(project, 1);
         }
       },
     };
@@ -107,7 +106,7 @@ projectManager.addProject(project1);
 projectManager.addProject(project2);
 console.log(projectManager.listProjects(), "test");
 
-projectManager.removeProject(project1);
+projectManager.removeProject(1);
 
 // // What to do next
 // Complete CRUD Operations:
@@ -138,9 +137,15 @@ function renderProjectsList() {
 
     let projectEl = document.createElement("div");
     projectEl.innerHTML = `
-<p>${projectData.name}<p>
+<p>${projectData.name}</p>
+<button data-index='${i}'>delete</button>
 `;
 
+    const deleteButton = projectEl.querySelector("button"); //damn this is actually so smart, I stole this but selecting projectEl instead of the document query select sheesh
+    deleteButton.addEventListener("click", () => {
+      projectManager.removeProject(i);
+      renderProjectsList();
+    });
     projectWrapper.appendChild(projectEl);
   }
 }
