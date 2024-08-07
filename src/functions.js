@@ -107,12 +107,3 @@ projectManager.addProject(project2);
 console.log(projectManager.listProjects(), "test");
 
 projectManager.removeProject(1);
-
-// // What to do next
-// Complete CRUD Operations:
-
-// Project Management:
-
-// Create Projects: Implement functionality to create new projects.
-// Delete Projects: Add functionality to delete projects.
-// List Projects: Ensure you can list all projects.
