@@ -16,15 +16,34 @@
       type="text"
       name="project-title"
       id="project-title"
-      placeholder="Add a new task"
+      placeholder="Add a new Projcet"
       required
     />
     <button type="submit" id="submit">Add Project</button>
   </form>
 
   <form action="" id="todo-form">
-    <input type="text" id="todo-input" placeholder="Add a new task" required />
-    <button type="submit" id="submit">Add</button>
+    <label for="todo-name">Name</label>
+    <input type="text" id="todo-name" placeholder="Task Name" required />
+
+    <label for="todo-description">Description</label>
+    <input type="text" id="todo-description" />
+
+    <label for="todo-date">Date</label>
+    <input type="date" id="todo-date" />
+
+    <p>Priority</p>
+    <label for="todo-high">High</label>
+    <input type="radio" id="todo-high" value="High" name="todo-priority" />
+    <br />
+    <label for="todo-medium">Medium</label>
+    <input type="radio" id="todo-medium" value="Medium" name="todo-priority" />
+    <br />
+    <label for="todo-low">Low</label>
+    <input type="radio" id="todo-medium" value="Low" name="todo-priority" />
+    <br />
+    <label for="todo-notes">Notes</label>
+    <input type="textarea" id="todo-notes" />
   </form>
 
   <script src="index.js"></script>

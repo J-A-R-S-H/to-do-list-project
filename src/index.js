@@ -34,3 +34,14 @@ function renderProjectsList() {
 }
 
 renderProjectsList();
+
+const project1 = new Project("Sample Project 1");
+
+function renderTodoList() {
+  renderTodoList.innerHTML = "";
+  for (let i = 0; i < project1.listTodos().length; i++) {
+    console.log(i, "yes");
+  }
+}
+
+renderTodoList();
