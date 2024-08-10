@@ -36,12 +36,40 @@ function renderProjectsList() {
 renderProjectsList();
 
 const project1 = new Project("Sample Project 1");
+const todo1 = new ToDoItem(
+  "test",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+const todo2 = new ToDoItem(
+  "smt else",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+project1.addTodo(todo1);
+project1.addTodo(todo2);
 
-function renderTodoList() {
-  renderTodoList.innerHTML = "";
-  for (let i = 0; i < project1.listTodos().length; i++) {
-    console.log(i, "yes");
-  }
+console.log(project1.listTodos());
+const todoListWrapper = document.querySelector("#todoListWrapper");
+
+function renderTodoList(projects = project1) {
+  const todoData = projects.listTodos();
+  todoListWrapper.innerHTML = "";
+  console.log(todoData, "ec");
+  todoData.forEach((todo, index) => {
+    let todoEl = document.createElement("div");
+    todoEl.innerHTML = `
+<p>${todo.title}</p>
+    `;
+
+    todoListWrapper.appendChild(todoEl);
+  });
 }
 
 renderTodoList();
