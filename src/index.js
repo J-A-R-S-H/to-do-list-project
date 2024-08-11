@@ -66,6 +66,9 @@ function renderTodoList(projects = project1) {
     let todoEl = document.createElement("div");
     todoEl.innerHTML = `
 <p>${todo.title}</p>
+<p>${todo.description}</p>
+<p>${todo.dueDate}</p>
+<p>${todo.notes}</p>  
     `;
 
     todoListWrapper.appendChild(todoEl);
