@@ -69,8 +69,21 @@ function renderTodoList(projects = project1) {
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.notes}</p>  
+<input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
     `;
+    const allCheckboxes = todoEl.querySelectorAll("#todo-checkbox");
+    console.log(allCheckboxes, "null");
 
+    allCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", (e) => {
+        const id = e.target.dataset.id;
+        const updatedTodo = {
+          checked: e.target.checked,
+        };
+        projects.updateTodo(id, updatedTodo);
+        console.log(project1.listTodos());
+      });
+    });
     todoListWrapper.appendChild(todoEl);
   });
 }

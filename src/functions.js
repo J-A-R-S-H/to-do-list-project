@@ -6,7 +6,7 @@ export class ToDoItem {
     priority,
     notes = "",
     checked = false,
-    id = Date.now()
+    id = generateUniqueId()
   ) {
     this.title = title;
     this.description = description;
@@ -16,6 +16,10 @@ export class ToDoItem {
     this.checked = checked;
     this.id = id;
   }
+}
+
+function generateUniqueId() {
+  return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 }
 
 export class Project {
