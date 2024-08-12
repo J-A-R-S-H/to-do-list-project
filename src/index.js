@@ -89,3 +89,13 @@ function renderTodoList(projects = project1) {
 }
 
 renderTodoList();
+
+const todoForm = document.querySelector("#todo-form");
+const todoName = document.querySelector("#todo-name");
+
+todoForm.addEventListener("submit", (e, projects = project1) => {
+  e.preventDefault();
+  const newTodo = new ToDoItem(todoName.value, "", "2024-08-25", "", "", "");
+  projects.addTodo(newTodo);
+  renderTodoList();
+});
