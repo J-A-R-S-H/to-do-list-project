@@ -37,9 +37,8 @@ export class Project {
   }
 
   removeTodo(todo) {
-    const index = this.todos.indexOf(todo);
-    if (index > -1) {
-      this.todos.splice(index, 1);
+    if (todo > -1) {
+      this.todos.splice(todo, 1);
     }
   }
 
