@@ -50,6 +50,50 @@
 
   <div id="todoListWrapper"></div>
 
+  <div id="edit-modal">
+    <div id="edit-modal-content">
+      <form id="edit-todo-form">
+        <legend>Edit Todo</legend>
+        <input type="hidden" id="edit-todo-id" />
+        <label for="edit-todo-name">Name</label>
+        <input type="text" id="edit-todo-name" required />
+        <label for="edit-todo-description">Description</label>
+        <input type="text" id="edit-todo-description" />
+        <label for="edit-todo-date">Date</label>
+        <input type="date" id="edit-todo-date" />
+        <p>Priority</p>
+        <label for="edit-todo-high">High</label>
+        <input
+          type="radio"
+          id="edit-todo-high"
+          value="High"
+          name="edit-todo-priority"
+        />
+        <br />
+        <label for="edit-todo-medium">Medium</label>
+        <input
+          type="radio"
+          id="edit-todo-medium"
+          value="Medium"
+          name="edit-todo-priority"
+        />
+        <br />
+        <label for="edit-todo-low">Low</label>
+        <input
+          type="radio"
+          id="edit-todo-low"
+          value="Low"
+          name="edit-todo-priority"
+        />
+        <br />
+        <label for="edit-todo-notes">Notes</label>
+        <input type="textarea" id="edit-todo-notes" />
+        <button type="submit">Save Changes</button>
+        <button type="button" id="cancel-edit">Cancel</button>
+      </form>
+    </div>
+  </div>
+
   <script src="index.js"></script>
   <body></body>
 </html>

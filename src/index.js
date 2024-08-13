@@ -1,4 +1,5 @@
 import { ToDoItem, Project, projectManager } from "./functions";
+import "./styles.css";
 
 const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
@@ -69,7 +70,8 @@ function renderTodoList(projects = project1) {
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.notes}</p>
-<button data-index='${index}'>Delete</button>
+<button id='edit-btn'data-index='${index}'>Edit</button>
+<button id='delete-btn' data-index='${index}'>Delete</button>
 <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
     `;
     const allCheckboxes = todoEl.querySelectorAll("#todo-checkbox");
@@ -86,11 +88,14 @@ function renderTodoList(projects = project1) {
       });
     });
 
-    const deleteButton = todoEl.querySelector("button");
+    const deleteButton = todoEl.querySelector("#delete-btn");
     deleteButton.addEventListener("click", () => {
       projects.removeTodo(index);
       renderTodoList();
     });
+
+    const editButton = todoEl.querySelector("#edit-btn");
+    editButton.addEventListener("click", () => {});
 
     todoListWrapper.appendChild(todoEl);
   });
