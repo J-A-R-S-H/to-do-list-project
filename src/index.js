@@ -68,7 +68,8 @@ function renderTodoList(projects = project1) {
 <p>${todo.title}</p>
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
-<p>${todo.notes}</p>  
+<p>${todo.notes}</p>
+<button data-index='${index}'>Delete</button>
 <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
     `;
     const allCheckboxes = todoEl.querySelectorAll("#todo-checkbox");
