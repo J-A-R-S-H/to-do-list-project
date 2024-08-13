@@ -95,7 +95,25 @@ function renderTodoList(projects = project1) {
     });
 
     const editButton = todoEl.querySelector("#edit-btn");
-    editButton.addEventListener("click", () => {});
+    editButton.addEventListener("click", (e) => {
+      //for tommorow remmeber that you have to display the before this
+      // then you submit the form currently your just subitting the form in one go
+      // without making the form pop up
+
+      const todoEditName = document.querySelector("#edit-todo-name");
+      e.preventDefault();
+      const newTodo = new ToDoItem(
+        todoEditName.value,
+        "",
+        "2024-08-25",
+        "",
+        "",
+        ""
+      );
+      projects.updateTodo(newTodo);
+      renderTodoList();
+      console.log(projects.listTodos(), "todos");
+    });
 
     todoListWrapper.appendChild(todoEl);
   });
