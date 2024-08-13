@@ -85,11 +85,16 @@ function renderTodoList(projects = project1) {
         console.log(project1.listTodos());
       });
     });
+
+    const deleteButton = todoEl.querySelector("button");
+    deleteButton.addEventListener("click", () => {
+      projects.removeTodo(index);
+      renderTodoList();
+    });
+
     todoListWrapper.appendChild(todoEl);
   });
 }
-
-renderTodoList();
 
 const todoForm = document.querySelector("#todo-form");
 const todoName = document.querySelector("#todo-name");
@@ -100,3 +105,5 @@ todoForm.addEventListener("submit", (e, projects = project1) => {
   projects.addTodo(newTodo);
   renderTodoList();
 });
+
+renderTodoList();
