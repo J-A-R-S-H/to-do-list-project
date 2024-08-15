@@ -107,6 +107,8 @@ function renderTodoList(projects = project1) {
       const todoEditPriority = document.querySelectorAll(
         "input[name='edit-todo-priority']"
       );
+      const todoEditNotes = document.querySelector("#edit-todo-notes");
+
       console.log(todoEditPriority);
       todoEditName.value = indexedTodo.title;
       todoEditDescription.value = indexedTodo.description;
@@ -116,6 +118,7 @@ function renderTodoList(projects = project1) {
           radioButton.checked = true;
         }
       });
+      todoEditNotes.value = indexedTodo.notes;
 
       editModal.style.display = "flex";
     });
