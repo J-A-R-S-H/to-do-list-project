@@ -94,22 +94,21 @@ function renderTodoList(projects = project1) {
       renderTodoList();
     });
 
+    const indexedTodo = todoData[index];
+
+    const todoEditName = document.querySelector("#edit-todo-name");
+    const todoEditDescription = document.querySelector(
+      "#edit-todo-description"
+    );
+    const todoEditDate = document.querySelector("#edit-todo-date");
+    const todoEditPriority = document.querySelectorAll(
+      "input[name='edit-todo-priority']"
+    );
+    const todoEditNotes = document.querySelector("#edit-todo-notes");
     const editButton = todoEl.querySelector("#edit-btn");
     editButton.addEventListener("click", (e) => {
       const editModal = document.querySelector("#edit-modal");
-      const indexedTodo = todoData[index];
 
-      const todoEditName = document.querySelector("#edit-todo-name");
-      const todoEditDescription = document.querySelector(
-        "#edit-todo-description"
-      );
-      const todoEditDate = document.querySelector("#edit-todo-date");
-      const todoEditPriority = document.querySelectorAll(
-        "input[name='edit-todo-priority']"
-      );
-      const todoEditNotes = document.querySelector("#edit-todo-notes");
-
-      console.log(todoEditPriority);
       todoEditName.value = indexedTodo.title;
       todoEditDescription.value = indexedTodo.description;
       todoEditDate.value = indexedTodo.dueDate;
@@ -124,6 +123,19 @@ function renderTodoList(projects = project1) {
     });
 
     todoListWrapper.appendChild(todoEl);
+
+    const editTodoForm = document.querySelector("#edit-todo-form");
+
+    editTodoForm.addEventListener("click", (e) => {
+      const editedTodo = new ToDoItem(
+        todoEditName.value,
+        todoEditDescription.value,
+        todoEditDate.value,
+        todoEditPriority.value,
+        todoEditNotes.value
+      );
+      projects.updateTodo(editedTodo);
+    });
   });
 }
 
@@ -132,7 +144,7 @@ const todoName = document.querySelector("#todo-name");
 
 todoForm.addEventListener("submit", (e, projects = project1) => {
   e.preventDefault();
-  const newTodo = new ToDoItem(todoName.value, "", "2024-08-25", "", "", "");
+  const newTodo = new ToDoItem(todoName.value, "", "2024-08-25", "", "");
   projects.addTodo(newTodo);
   renderTodoList();
 });
