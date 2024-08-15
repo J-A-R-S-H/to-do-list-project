@@ -108,9 +108,9 @@ function renderTodoList(projects = project1) {
     );
     const todoEditNotes = document.querySelector("#edit-todo-notes");
     const editButton = todoEl.querySelector("#edit-btn");
-    editButton.addEventListener("click", (e) => {
-      const editModal = document.querySelector("#edit-modal");
+    const editModal = document.querySelector("#edit-modal");
 
+    editButton.addEventListener("click", (e) => {
       todoEditName.value = indexedTodo.title;
       todoEditDescription.value = indexedTodo.description;
       todoEditDate.value = indexedTodo.dueDate;
@@ -140,6 +140,7 @@ function renderTodoList(projects = project1) {
       );
       projects.updateTodo(id, editedTodo);
       renderTodoList();
+      editModal.style.display = "none";
     });
   });
 }
