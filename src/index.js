@@ -61,6 +61,8 @@ const todoListWrapper = document.querySelector("#todoListWrapper");
 
 function renderTodoList(projects = project1) {
   const todoData = projects.listTodos();
+  const editTodoForm = document.querySelector("#edit-todo-form");
+
   todoListWrapper.innerHTML = "";
   console.log(todoData, "ec");
   todoData.forEach((todo, index) => {
@@ -70,7 +72,7 @@ function renderTodoList(projects = project1) {
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.notes}</p>
-<button id='edit-btn'data-index='${index}'>Edit</button>
+<button id='edit-btn' data-id='${todo.id}'>Edit</button>
 <button id='delete-btn' data-index='${index}'>Delete</button>
 <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
     `;
@@ -120,13 +122,15 @@ function renderTodoList(projects = project1) {
       todoEditNotes.value = indexedTodo.notes;
 
       editModal.style.display = "flex";
+
+      editTodoForm.dataset.todoId = editButton.dataset.id;
     });
 
     todoListWrapper.appendChild(todoEl);
 
-    const editTodoForm = document.querySelector("#edit-todo-form");
-
-    editTodoForm.addEventListener("click", (e) => {
+    editTodoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const id = editTodoForm.dataset.todoId;
       const editedTodo = new ToDoItem(
         todoEditName.value,
         todoEditDescription.value,
@@ -134,7 +138,8 @@ function renderTodoList(projects = project1) {
         todoEditPriority.value,
         todoEditNotes.value
       );
-      projects.updateTodo(editedTodo);
+      projects.updateTodo(id, editedTodo);
+      renderTodoList();
     });
   });
 }
