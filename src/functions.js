@@ -10,7 +10,7 @@ export class ToDoItem {
   ) {
     this.title = title;
     this.description = description;
-    this.dueDate = new Date(dueDate);
+    this.dueDate = dueDate;
     this.priority = priority;
     this.notes = notes;
     this.checked = checked;

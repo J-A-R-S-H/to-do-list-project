@@ -96,23 +96,28 @@ function renderTodoList(projects = project1) {
 
     const editButton = todoEl.querySelector("#edit-btn");
     editButton.addEventListener("click", (e) => {
-      //for tommorow remmeber that you have to display the before this
-      // then you submit the form currently your just subitting the form in one go
-      // without making the form pop up
+      const editModal = document.querySelector("#edit-modal");
+      const indexedTodo = todoData[index];
 
       const todoEditName = document.querySelector("#edit-todo-name");
-      e.preventDefault();
-      const newTodo = new ToDoItem(
-        todoEditName.value,
-        "",
-        "2024-08-25",
-        "",
-        "",
-        ""
+      const todoEditDescription = document.querySelector(
+        "#edit-todo-description"
       );
-      projects.updateTodo(newTodo);
-      renderTodoList();
-      console.log(projects.listTodos(), "todos");
+      const todoEditDate = document.querySelector("#edit-todo-date");
+      const todoEditPriority = document.querySelectorAll(
+        "input[name='edit-todo-priority']"
+      );
+      console.log(todoEditPriority);
+      todoEditName.value = indexedTodo.title;
+      todoEditDescription.value = indexedTodo.description;
+      todoEditDate.value = indexedTodo.dueDate;
+      todoEditPriority.forEach((radioButton) => {
+        if (radioButton.value === indexedTodo.priority) {
+          radioButton.checked = true;
+        }
+      });
+
+      editModal.style.display = "flex";
     });
 
     todoListWrapper.appendChild(todoEl);
