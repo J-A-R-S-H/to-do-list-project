@@ -71,6 +71,7 @@ function renderTodoList(projects = project1) {
 <p>${todo.title}</p>
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
+<p>${todo.priority}</p>
 <p>${todo.notes}</p>
 <button id='edit-btn' data-id='${todo.id}'>Edit</button>
 <button id='delete-btn' data-index='${index}'>Delete</button>
@@ -131,11 +132,15 @@ function renderTodoList(projects = project1) {
     editTodoForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const id = editTodoForm.dataset.todoId;
+      const selectedPriority = Array.from(todoEditPriority).find(
+        (radio) => radio.checked
+      )?.value;
+
       const editedTodo = new ToDoItem(
         todoEditName.value,
         todoEditDescription.value,
         todoEditDate.value,
-        todoEditPriority.value,
+        selectedPriority,
         todoEditNotes.value
       );
       projects.updateTodo(id, editedTodo);
@@ -146,11 +151,27 @@ function renderTodoList(projects = project1) {
 }
 
 const todoForm = document.querySelector("#todo-form");
-const todoName = document.querySelector("#todo-name");
 
 todoForm.addEventListener("submit", (e, projects = project1) => {
   e.preventDefault();
-  const newTodo = new ToDoItem(todoName.value, "", "2024-08-25", "", "");
+
+  const todoName = document.querySelector("#todo-name");
+  const todoDescription = document.querySelector("#todo-description");
+  const todoDate = document.querySelector("#todo-date");
+  const todoNotes = document.querySelector("#todo-notes");
+  const todoPriority = document.querySelectorAll("input[name='todo-priority']");
+
+  const selectedPriority = Array.from(todoPriority).find(
+    (radio) => radio.checked
+  )?.value;
+
+  const newTodo = new ToDoItem(
+    todoName.value,
+    todoDescription.value,
+    todoDate.value,
+    selectedPriority,
+    todoNotes.value
+  );
   projects.addTodo(newTodo);
   renderTodoList();
 });
