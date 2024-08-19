@@ -147,6 +147,12 @@ function renderTodoList(projects = project1) {
       renderTodoList();
       editModal.style.display = "none";
     });
+
+    const cancelEditBtn = document.querySelector("#cancel-edit");
+    cancelEditBtn.addEventListener("click", () => {
+      console.log("check");
+      editModal.style.display = "none";
+    });
   });
 }
 
