@@ -23,11 +23,17 @@ function renderProjectsList() {
     projectEl.innerHTML = `
 <p>${projectData.name}</p>
 <button data-index='${i}'>delete</button>
+<button data-index='${index}' class='select-btn'>Select</button>
+
 `;
 
     const deleteButton = projectEl.querySelector("button"); //damn this is actually so smart, I stole this but selecting projectEl instead of the document query select sheesh
     deleteButton.addEventListener("click", () => {
       projectManager.removeProject(i);
+      if (currentProject === project) {
+        currentProject = null;
+        renderTodoList(); // Clear todo list if current project is deleted
+      }
       renderProjectsList();
     });
     projectWrapper.appendChild(projectEl);
@@ -160,13 +166,11 @@ const todoForm = document.querySelector("#todo-form");
 
 todoForm.addEventListener("submit", (e, projects = project1) => {
   e.preventDefault();
-
   const todoName = document.querySelector("#todo-name");
   const todoDescription = document.querySelector("#todo-description");
   const todoDate = document.querySelector("#todo-date");
   const todoNotes = document.querySelector("#todo-notes");
   const todoPriority = document.querySelectorAll("input[name='todo-priority']");
-
   const selectedPriority = Array.from(todoPriority).find(
     (radio) => radio.checked
   )?.value;
