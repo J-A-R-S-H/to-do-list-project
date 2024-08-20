@@ -21,19 +21,14 @@ function renderProjectsList() {
 
     let projectEl = document.createElement("div");
     projectEl.innerHTML = `
-<p>${projectData.name}</p>
+<li>${projectData.name}</li>
 <button data-index='${i}'>delete</button>
-<button data-index='${index}' class='select-btn'>Select</button>
 
 `;
 
     const deleteButton = projectEl.querySelector("button"); //damn this is actually so smart, I stole this but selecting projectEl instead of the document query select sheesh
     deleteButton.addEventListener("click", () => {
       projectManager.removeProject(i);
-      if (currentProject === project) {
-        currentProject = null;
-        renderTodoList(); // Clear todo list if current project is deleted
-      }
       renderProjectsList();
     });
     projectWrapper.appendChild(projectEl);
