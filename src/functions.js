@@ -59,8 +59,6 @@ function ProjectManager() {
   let instance;
   function init() {
     const projects = [];
-    const todos = [];
-
     return {
       addProject(project) {
         if (project instanceof Project) {
@@ -70,11 +68,10 @@ function ProjectManager() {
       listProjects() {
         return projects;
       },
-      removeProject(projectId) {
-        const index = projects.findIndex((p) => p.id === projectId);
-        if (index > -1) {
-          projects.splice(index, 1);
-          todos = todos.filter((todo) => todo.projectId !== projectId);
+
+      removeProject(project) {
+        if (project > -1) {
+          projects.splice(project, 1);
         }
       },
     };

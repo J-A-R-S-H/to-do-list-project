@@ -32,6 +32,7 @@ function renderProjectsList() {
   projectWrapper.innerHTML = "";
   for (let i = 0; i < projectManager.listProjects().length; i++) {
     const projectData = projectManager.listProjects()[i];
+
     console.log(projectData, "project data");
 
     let projectEl = document.createElement("div");
@@ -48,7 +49,13 @@ function renderProjectsList() {
       projectManager.removeProject(i);
       renderProjectsList();
     });
-    const selectButton = p;
+    const selectButton = projectEl.querySelector("#select-btn");
+    selectButton.addEventListener("click", () => {
+      renderProjectsList();
+      console.log(projectManager.listProjects()[i], "test");
+      console.log(i);
+      setter(projectManager.listProjects()[i]);
+    });
 
     projectWrapper.appendChild(projectEl);
   }
