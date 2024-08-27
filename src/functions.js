@@ -3,7 +3,7 @@ export class ToDoItem {
     title,
     description,
     dueDate,
-    priority,
+    priority = "",
     notes = "",
     checked = false,
     id = generateUniqueId()

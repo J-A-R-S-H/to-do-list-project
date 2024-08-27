@@ -5,6 +5,28 @@ const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
 const projectWrapper = document.querySelector("#project-wrapper");
 
+const project1 = new Project("Sample Project 1");
+const todo1 = new ToDoItem(
+  "test",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+const todo2 = new ToDoItem(
+  "smt else",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+project1.addTodo(todo1);
+project1.addTodo(todo2);
+
+console.log(project1.listTodos());
+
 function useState(initialValue) {
   let state = initialValue;
 
@@ -18,7 +40,7 @@ function useState(initialValue) {
 
   return [getState, setState];
 }
-const [getter, setter] = useState("");
+const [getterPL, setterPl] = useState(project1);
 
 projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -54,7 +76,8 @@ function renderProjectsList() {
       renderProjectsList();
       console.log(projectManager.listProjects()[i], "test");
       console.log(i);
-      setter(projectManager.listProjects()[i]);
+      setterPl(projectManager.listProjects()[i]);
+      console.log(getterPL(), "getter");
     });
 
     projectWrapper.appendChild(projectEl);
@@ -63,30 +86,9 @@ function renderProjectsList() {
 
 renderProjectsList();
 
-const project1 = new Project("Sample Project 1");
-const todo1 = new ToDoItem(
-  "test",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-const todo2 = new ToDoItem(
-  "smt else",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-project1.addTodo(todo1);
-project1.addTodo(todo2);
-
-console.log(project1.listTodos());
 const todoListWrapper = document.querySelector("#todoListWrapper");
 
-function renderTodoList(projects = project1) {
+function renderTodoList(projects = getterPL()) {
   const todoData = projects.listTodos();
   const editTodoForm = document.querySelector("#edit-todo-form");
 
@@ -105,7 +107,7 @@ function renderTodoList(projects = project1) {
 <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
     `;
     const allCheckboxes = todoEl.querySelectorAll("#todo-checkbox");
-    console.log(allCheckboxes, "null");
+    console.log(allCheckboxes, "checkboxes");
 
     allCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
@@ -185,7 +187,9 @@ function renderTodoList(projects = project1) {
 
 const todoForm = document.querySelector("#todo-form");
 
-todoForm.addEventListener("submit", (e, projects = project1) => {
+todoForm.addEventListener("submit", (e, projects = getterPL()) => {
+  console.log(getterPL(), "getter");
+  console.log(projects, "projects");
   e.preventDefault();
   const todoName = document.querySelector("#todo-name");
   const todoDescription = document.querySelector("#todo-description");
