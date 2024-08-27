@@ -5,6 +5,21 @@ const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
 const projectWrapper = document.querySelector("#project-wrapper");
 
+function useState(initialValue) {
+  let state = initialValue;
+
+  function setState(newValue) {
+    state = newValue;
+  }
+
+  function getState() {
+    return state;
+  }
+
+  return [getState, setState];
+}
+const [getter, setter] = useState("");
+
 projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
   projectManager.addProject(new Project(projectTitle.value));
@@ -22,17 +37,19 @@ function renderProjectsList() {
     let projectEl = document.createElement("div");
     projectEl.innerHTML = `
 <li>${projectData.name}</li>
-<button data-index='${i}'>delete</button>
-<button data-index='${i}'>select</button>
+<button id='delete-btn' data-index='${i}'>delete</button>
+<button id='select-btn' data-index='${i}'>select</button>
 
 
 `;
 
-    const deleteButton = projectEl.querySelector("button"); //damn this is actually so smart, I stole this but selecting projectEl instead of the document query select sheesh
+    const deleteButton = projectEl.querySelector("#delete-btn"); //damn this is actually so smart, I stole this but selecting projectEl instead of the document query select sheesh
     deleteButton.addEventListener("click", () => {
       projectManager.removeProject(i);
       renderProjectsList();
     });
+    const selectButton = p;
+
     projectWrapper.appendChild(projectEl);
   }
 }
