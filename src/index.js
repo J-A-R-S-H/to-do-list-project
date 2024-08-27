@@ -74,6 +74,7 @@ function renderProjectsList() {
     const selectButton = projectEl.querySelector("#select-btn");
     selectButton.addEventListener("click", () => {
       renderProjectsList();
+      renderTodoList();
       console.log(projectManager.listProjects()[i], "test");
       console.log(i);
       setterPl(projectManager.listProjects()[i]);
