@@ -23,6 +23,8 @@ function renderProjectsList() {
     projectEl.innerHTML = `
 <li>${projectData.name}</li>
 <button data-index='${i}'>delete</button>
+<button data-index='${i}'>select</button>
+
 
 `;
 

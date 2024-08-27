@@ -74,29 +74,7 @@ function ProjectManager() {
         const index = projects.findIndex((p) => p.id === projectId);
         if (index > -1) {
           projects.splice(index, 1);
-          // Optionally remove todos associated with the project
           todos = todos.filter((todo) => todo.projectId !== projectId);
-        }
-      },
-      addTodoToProject(todo, projectId) {
-        const projectExists = projects.some((p) => p.id === projectId);
-        if (projectExists && todo instanceof ToDoItem) {
-          todos.push({ ...todo, projectId });
-        }
-      },
-      listTodos() {
-        return todos;
-      },
-      removeTodoById(todoId) {
-        const index = todos.findIndex((todo) => todo.id === todoId);
-        if (index > -1) {
-          todos.splice(index, 1);
-        }
-      },
-      updateTodoById(todoId, updatedTodo) {
-        const index = todos.findIndex((todo) => todo.id === todoId);
-        if (index > -1) {
-          Object.assign(todos[index], updatedTodo);
         }
       },
     };
