@@ -1,29 +1,9 @@
-import { ToDoItem, Project, projectManager } from "./functions";
+import { ToDoItem, Project, projectManager, project1 } from "./functions";
 import "./styles.css";
 
 const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
 const projectWrapper = document.querySelector("#project-wrapper");
-
-const project1 = new Project("Sample Project 1");
-const todo1 = new ToDoItem(
-  "test",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-const todo2 = new ToDoItem(
-  "smt else",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-project1.addTodo(todo1);
-project1.addTodo(todo2);
 
 console.log(project1.listTodos());
 

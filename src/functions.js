@@ -84,7 +84,7 @@ function ProjectManager() {
   return instance;
 }
 
-const project1 = new Project("Sample Project 1");
+export const project1 = new Project("Sample Project 1");
 const todo = new ToDoItem("test", "test", "2023-12-31", "High", "Notes", false);
 
 project1.addTodo(todo);
@@ -110,3 +110,21 @@ projectManager.addProject(project2);
 console.log(projectManager.listProjects(), "test");
 
 projectManager.removeProject(1);
+const todo1 = new ToDoItem(
+  "test",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+const todo2 = new ToDoItem(
+  "smt else",
+  "test",
+  "2023-12-31",
+  "High",
+  "Notes",
+  false
+);
+project1.addTodo(todo1);
+project1.addTodo(todo2);
