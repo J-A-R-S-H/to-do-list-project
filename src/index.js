@@ -4,6 +4,7 @@ import "./styles.css";
 const projectForm = document.querySelector("#project-form");
 const projectTitle = document.querySelector("#project-title");
 const projectWrapper = document.querySelector("#project-wrapper");
+const addModal = document.querySelector("#add-modal");
 
 console.log(project1.listTodos());
 
@@ -160,8 +161,11 @@ function renderTodoList(projects = getterPL()) {
 
     const cancelEditBtn = document.querySelector("#cancel-edit");
     cancelEditBtn.addEventListener("click", () => {
-      console.log("check");
       editModal.style.display = "none";
+    });
+    const addBtn = document.querySelector(".add-btn");
+    addBtn.addEventListener("click", () => {
+      addModal.style.display = "flex";
     });
   });
 }
@@ -169,9 +173,10 @@ function renderTodoList(projects = getterPL()) {
 const todoForm = document.querySelector("#todo-form");
 
 todoForm.addEventListener("submit", (e, projects = getterPL()) => {
-  console.log(getterPL(), "getter");
-  console.log(projects, "projects");
   e.preventDefault();
+
+  addModal.style.display = "none";
+
   const todoName = document.querySelector("#todo-name");
   const todoDescription = document.querySelector("#todo-description");
   const todoDate = document.querySelector("#todo-date");
