@@ -78,12 +78,13 @@ function renderTodoList(projects = getterPL()) {
   console.log(todoData, "ec");
   todoData.forEach((todo, index) => {
     let todoEl = document.createElement("div");
+    todoEl.classList.add("card-container");
     todoEl.innerHTML = `
-<p>${todo.title}</p>
+<h2>${todo.title}</h2>
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.priority}</p>
-<p>${todo.notes}</p>
+<p> ${todo.notes}</p>
 <button id='edit-btn' data-id='${todo.id}'>Edit</button>
 <button id='delete-btn' data-index='${index}'>Delete</button>
 <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
