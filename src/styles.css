@@ -130,17 +130,46 @@ padding: 0.2rem;
 .card-container { 
   background-color: var(--secondary-color);
   padding: 1rem;
-  width: 11rem;
-  display: flex;
+width: 11rem;  
+display: flex;
 flex-direction: column;
 border-radius: 1rem;
   gap: 1rem;
+  justify-content: space-between;
+  word-break: break-word;
+
+  
+
 }
 
-.card-container>* {
+.card-container .card-start>* {
   margin: 0;
 }
 
 .card-container input {
   accent-color: var(--accent-color);
 }
+
+#edit-btn, #delete-btn {
+  height: 1.5rem;
+background-color: var(--add-button-color);
+border: none;
+color: #5b4931;
+font-weight: bold;
+border-radius: 4px;
+}
+
+.card-start, .card-end {
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+.card-container #todo-checkbox {
+align-self: flex-start;}
