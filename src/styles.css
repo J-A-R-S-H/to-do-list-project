@@ -101,6 +101,11 @@ font-weight: bold;
   padding: 0.2rem;
  }
 
+ #todo-checkbox
+{
+  width: 1.2em;
+  height: 1.2em;}
+
 .side-list {
   background-color: var(--background-color-side);
   display: flex;
@@ -173,7 +178,7 @@ transition: transform 0.2s ease-in;
 }
 
 .card-container:hover{
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 
 }
 .card-container .card-start>* {
