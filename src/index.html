@@ -73,31 +73,30 @@
         <input type="text" id="edit-todo-description" />
         <label for="edit-todo-date">Date</label>
         <input type="date" id="edit-todo-date" />
-        <p>Priority</p>
-        <label for="edit-todo-high">High</label>
-        <input
-          type="radio"
-          id="edit-todo-high"
-          value="High"
-          name="edit-todo-priority"
-        />
-        <br />
-        <label for="edit-todo-medium">Medium</label>
-        <input
-          type="radio"
-          id="edit-todo-medium"
-          value="Medium"
-          name="edit-todo-priority"
-        />
-        <br />
-        <label for="edit-todo-low">Low</label>
-        <input
-          type="radio"
-          id="edit-todo-low"
-          value="Low"
-          name="edit-todo-priority"
-        />
-        <br />
+        <p class="priority-text">Priority</p>
+        <div>
+          <label for="edit-todo-high">High</label>
+          <input
+            type="radio"
+            id="edit-todo-high"
+            value="High"
+            name="edit-todo-priority"
+          />
+          <label for="edit-todo-medium">Medium</label>
+          <input
+            type="radio"
+            id="edit-todo-medium"
+            value="Medium"
+            name="edit-todo-priority"
+          />
+          <label for="edit-todo-low">Low</label>
+          <input
+            type="radio"
+            id="edit-todo-low"
+            value="Low"
+            name="edit-todo-priority"
+          />
+        </div>
         <label for="edit-todo-notes">Notes</label>
         <input type="textarea" id="edit-todo-notes" />
         <button type="submit">Save Changes</button>

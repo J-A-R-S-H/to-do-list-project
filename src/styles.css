@@ -17,6 +17,8 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 input {
   padding: 0;
   margin: 0;
+  border: none;
+  border-radius: 2px;
 }
 li {
   list-style: none;
@@ -34,11 +36,29 @@ li {
     align-items: center;
   }
   #edit-modal-content {
-    background: #fff;
+    background: var(--background-color-side);
     padding: 20px;
     border-radius: 8px;
     width: 300px;
   }
+
+  #edit-todo-form {
+    display: flex; 
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 70%;
+ align-items: start; }
+
+ #edit-todo-form > * {
+  margin: 0;
+ }
+
+ .priority-text {
+  font-weight: 600;
+ }
+ legend {
+  font-weight: bold;
+ }
 
   #add-modal {
     display: none;
@@ -68,6 +88,15 @@ font-weight: bold;
   width: 16rem;
   margin: 1rem 0;
 }
+ form button{
+
+  background-color: var(--add-button-color);
+  border-radius: 5px;
+font-weight: bold;
+  color: #5b4931;
+  border-width: 0px;
+  padding: 0.2rem 0.5rem;
+ }
 
 .side-list {
   background-color: var(--background-color-side);
