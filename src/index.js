@@ -172,6 +172,11 @@ function renderTodoList(projects = getterPL()) {
     addBtn.addEventListener("click", () => {
       addModal.style.display = "flex";
     });
+
+    const cancelAddBtn = document.querySelector("#cancel-add");
+    cancelAddBtn.addEventListener("click", () => {
+      addModal.style.display = "none";
+    });
   });
 }
 
