@@ -97,6 +97,9 @@ font-weight: bold;
   border-width: 0px;
   padding: 0.2rem 0.5rem;
  }
+ form input {
+  padding: 0.2rem;
+ }
 
 .side-list {
   background-color: var(--background-color-side);
@@ -166,11 +169,13 @@ border-radius: 1rem;
   gap: 1rem;
   justify-content: space-between;
   word-break: break-word;
-
-  
-
+transition: transform 0.2s ease-in;
 }
 
+.card-container:hover{
+  transform: translateY(-10px);
+
+}
 .card-container .card-start>* {
   margin: 0;
 }
