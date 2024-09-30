@@ -35,14 +35,14 @@ li {
     justify-content: center;
     align-items: center;
   }
-  #edit-modal-content {
+  #edit-modal-content, #add-modal-content {
     background: var(--background-color-side);
     padding: 20px;
     border-radius: 8px;
     width: 300px;
   }
 
-  #edit-todo-form {
+  #edit-todo-form, #todo-form {
     display: flex; 
     flex-direction: column;
     gap: 0.3rem;
@@ -72,7 +72,7 @@ li {
     align-items: center;
   }
   #add-modal-content {
-    background: #fff;
+    background-color: var(--background-color-side);
     padding: 20px;
     border-radius: 8px;
     width: 300px;
