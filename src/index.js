@@ -78,8 +78,9 @@ function renderTodoList(projects = getterPL()) {
     let todoEl = document.createElement("div");
     todoEl.classList.add("card-container");
     todoEl.innerHTML = `
-    <div class='card-start'>div
-<h2>${todo.title}</h2> <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
+    <div class='card-start'>
+    <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
+<h2>${todo.title}</h2> 
 
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
