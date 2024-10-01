@@ -26,7 +26,8 @@ function useState(initialValue) {
 
   return [getState, setState];
 }
-const [getterPL, setterPl] = useState(new Project("Sample Project 1"));
+
+const [getterPL, setterPl] = useState(projectManager.listProjects()[0]);
 
 projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -98,6 +99,7 @@ function renderTodoList(projects = getterPL()) {
 <button id='delete-btn' data-index='${index}'>Delete</button>
 </div>
     `;
+
     const allCheckboxes = todoEl.querySelectorAll("#todo-checkbox");
     console.log(allCheckboxes, "checkboxes");
 
@@ -173,12 +175,18 @@ function renderTodoList(projects = getterPL()) {
     cancelEditBtn.addEventListener("click", () => {
       editModal.style.display = "none";
     });
-    const addBtn = document.querySelector(".add-btn");
-    addBtn.addEventListener("click", () => {
-      addModal.style.display = "flex";
-    });
   });
 }
+
+const addBtn = document.querySelector(".add-btn");
+addBtn.addEventListener("click", () => {
+  addModal.style.display = "flex";
+});
+
+const cancelAddBtn = document.querySelector("#cancel-add");
+cancelAddBtn.addEventListener("click", () => {
+  addModal.style.display = "none";
+});
 
 const todoForm = document.querySelector("#todo-form");
 
@@ -205,13 +213,13 @@ todoForm.addEventListener("submit", (e) => {
   );
 
   const currentProject = getterPL();
+  console.log(currentProject, "currentPL");
   currentProject.addTodo(newTodo);
   renderTodoList(currentProject);
 
   todoName.value = "";
   todoDescription.value = "";
   todoDate.value = "";
-  selectedPriority = "";
   todoNotes.value = "";
 });
 
