@@ -31,6 +31,7 @@ export class Project {
   addTodo(todo) {
     if (todo instanceof ToDoItem) {
       this.todos.push(todo);
+      saveProjectsToLocalStorage();
     } else {
       console.log("Didn't work adding the todo item");
     }
@@ -39,6 +40,7 @@ export class Project {
   removeTodo(todo) {
     if (todo > -1) {
       this.todos.splice(todo, 1);
+      saveProjectsToLocalStorage();
     }
   }
 
@@ -47,6 +49,7 @@ export class Project {
     if (index > -1) {
       const todo = this.todos[index];
       Object.assign(todo, updatedTodo);
+      saveProjectsToLocalStorage();
     }
   }
 
@@ -63,6 +66,7 @@ function ProjectManager() {
       addProject(project) {
         if (project instanceof Project) {
           projects.push(project);
+          saveProjectsToLocalStorage();
         }
       },
       listProjects() {
@@ -72,6 +76,7 @@ function ProjectManager() {
       removeProject(project) {
         if (project > -1) {
           projects.splice(project, 1);
+          saveProjectsToLocalStorage();
         }
       },
     };
@@ -84,57 +89,31 @@ function ProjectManager() {
   return instance;
 }
 
-export const project1 = new Project("Sample Project 1");
-const todo = new ToDoItem("test", "test", "2023-12-31", "High", "Notes", false);
-
-project1.addTodo(todo);
-console.log(project1);
-console.log(project1.listTodos());
-
-const updatedProperties1 = {
-  title: "Updated Title",
-  description: "Updated Description",
-  dueDate: "2024-01-01",
-  priority: "Medium",
-  notes: "Updated Notes",
-  checked: true,
-};
-
-project1.updateTodo(todo.id, updatedProperties1);
-console.log(project1.listTodos());
-
 export const projectManager = ProjectManager();
-const project2 = new Project("Sample Project 2");
-projectManager.addProject(project1);
-projectManager.addProject(project2);
-console.log(projectManager.listProjects(), "test");
 
-projectManager.removeProject(1);
-const todo1 = new ToDoItem(
-  "test",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-const todo2 = new ToDoItem(
-  "smt else",
-  "test",
-  "2023-12-31",
-  "High",
-  "Notes",
-  false
-);
-project1.addTodo(todo1);
-project1.addTodo(todo2);
+function loadProjectsFromLocalStorage() {
+  const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+  savedProjects.forEach((projectData) => {
+    const project = new Project(projectData.name);
+    projectData.todos.forEach((todoData) => {
+      const todo = new ToDoItem(
+        todoData.title,
+        todoData.description,
+        todoData.dueDate,
+        todoData.priority,
+        todoData.notes,
+        todoData.checked,
+        todoData.id
+      );
+      project.addTodo(todo);
+    });
+    projectManager.addProject(project);
+  });
+}
 
-let projectSereliazed = JSON.stringify(project1);
-localStorage.setItem("project1", projectSereliazed);
-console.log(localStorage, "localstorgea");
-let projectDeSerialized = JSON.parse(localStorage.getItem("project1"));
+loadProjectsFromLocalStorage();
 
-console.log(projectDeSerialized, "deserial");
-
-const LOCAL_STORAGE_LIST_KEY = "task.lists";
-let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+function saveProjectsToLocalStorage() {
+  const projects = projectManager.listProjects();
+  localStorage.setItem("projects", JSON.stringify(projects));
+}

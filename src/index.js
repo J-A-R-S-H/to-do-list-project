@@ -1,4 +1,4 @@
-import { ToDoItem, Project, projectManager, project1 } from "./functions";
+import { ToDoItem, Project, projectManager } from "./functions";
 import "./styles.css";
 
 const projectForm = document.querySelector("#project-form");
@@ -11,6 +11,7 @@ function useState(initialValue) {
 
   function setState(newValue) {
     state = newValue;
+    saveProjectsToLocalStorage();
   }
 
   function getState() {
@@ -19,7 +20,7 @@ function useState(initialValue) {
 
   return [getState, setState];
 }
-const [getterPL, setterPl] = useState(project1);
+const [getterPL, setterPl] = useState(new Project("Sample Project 1"));
 
 projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
