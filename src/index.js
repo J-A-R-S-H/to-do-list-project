@@ -78,9 +78,9 @@ function renderTodoList(projects = getterPL()) {
     let todoEl = document.createElement("div");
     todoEl.classList.add("card-container");
     todoEl.innerHTML = `
-    <div class='card-start'>
-    <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
-<h2>${todo.title}</h2>
+    <div class='card-start'>div
+<h2>${todo.title}</h2> <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
+
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.priority}</p>
@@ -170,11 +170,6 @@ function renderTodoList(projects = getterPL()) {
     addBtn.addEventListener("click", () => {
       addModal.style.display = "flex";
     });
-
-    const cancelAddBtn = document.querySelector("#cancel-add");
-    cancelAddBtn.addEventListener("click", () => {
-      addModal.style.display = "none";
-    });
   });
 }
 
@@ -201,8 +196,10 @@ todoForm.addEventListener("submit", (e, projects = getterPL()) => {
     selectedPriority,
     todoNotes.value
   );
-  projects.addTodo(newTodo);
-  renderTodoList();
+
+  const currentProject = getterPL();
+  currentProject.addTodo(newTodo);
+  renderTodoList(currentProject);
 });
 
 renderTodoList();
