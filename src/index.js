@@ -1,4 +1,10 @@
-import { ToDoItem, Project, projectManager } from "./functions";
+import {
+  ToDoItem,
+  Project,
+  projectManager,
+  saveProjectsToLocalStorage,
+  loadProjectsFromLocalStorage,
+} from "./functions";
 import "./styles.css";
 
 const projectForm = document.querySelector("#project-form");
@@ -82,7 +88,6 @@ function renderTodoList(projects = getterPL()) {
     <div class='card-start'>
     <input type='checkbox' id='todo-checkbox' data-id='${todo.id}'>
 <h2>${todo.title}</h2> 
-
 <p>${todo.description}</p>
 <p>${todo.dueDate}</p>
 <p>${todo.priority}</p>
@@ -103,7 +108,7 @@ function renderTodoList(projects = getterPL()) {
           checked: e.target.checked,
         };
         projects.updateTodo(id, updatedTodo);
-        console.log(project1.listTodos());
+        console.log(projects.listTodos());
       });
     });
 
@@ -177,7 +182,7 @@ function renderTodoList(projects = getterPL()) {
 
 const todoForm = document.querySelector("#todo-form");
 
-todoForm.addEventListener("submit", (e, projects = getterPL()) => {
+todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   addModal.style.display = "none";
@@ -202,6 +207,12 @@ todoForm.addEventListener("submit", (e, projects = getterPL()) => {
   const currentProject = getterPL();
   currentProject.addTodo(newTodo);
   renderTodoList(currentProject);
+
+  todoName.value = "";
+  todoDescription.value = "";
+  todoDate.value = "";
+  selectedPriority = "";
+  todoNotes.value = "";
 });
 
 renderTodoList();

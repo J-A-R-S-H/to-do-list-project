@@ -91,7 +91,7 @@ function ProjectManager() {
 
 export const projectManager = ProjectManager();
 
-function loadProjectsFromLocalStorage() {
+export function loadProjectsFromLocalStorage() {
   const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
   savedProjects.forEach((projectData) => {
     const project = new Project(projectData.name);
@@ -113,7 +113,7 @@ function loadProjectsFromLocalStorage() {
 
 loadProjectsFromLocalStorage();
 
-function saveProjectsToLocalStorage() {
+export function saveProjectsToLocalStorage() {
   const projects = projectManager.listProjects();
   localStorage.setItem("projects", JSON.stringify(projects));
 }
