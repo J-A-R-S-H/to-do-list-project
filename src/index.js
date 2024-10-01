@@ -6,8 +6,6 @@ const projectTitle = document.querySelector("#project-title");
 const projectWrapper = document.querySelector("#project-wrapper");
 const addModal = document.querySelector("#add-modal");
 
-console.log(project1.listTodos());
-
 function useState(initialValue) {
   let state = initialValue;
 

@@ -128,3 +128,13 @@ const todo2 = new ToDoItem(
 );
 project1.addTodo(todo1);
 project1.addTodo(todo2);
+
+let projectSereliazed = JSON.stringify(project1);
+localStorage.setItem("project1", projectSereliazed);
+console.log(localStorage, "localstorgea");
+let projectDeSerialized = JSON.parse(localStorage.getItem("project1"));
+
+console.log(projectDeSerialized, "deserial");
+
+const LOCAL_STORAGE_LIST_KEY = "task.lists";
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
